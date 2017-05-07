@@ -13,6 +13,8 @@ display_height = 600
 black = (0, 0, 0)
 white = (255, 255, 255)
 red = (255, 0, 0)
+green = (0, 200, 0)
+bright_green = (0, 220, 0)
 
 opiskelija_width = 90
 opiskelija_height = 90
@@ -25,7 +27,7 @@ kela_height = 70
 
 
 gameDisplay = pygame.display.set_mode((display_width, display_height))         #sets dislpay reso
-pygame.display.set_caption('Get nobs or die tryin')                            #nameofthegame
+pygame.display.set_caption('Get nobs or die tryin Beta 0.1')                            #nameofthegame
 clock = pygame.time.Clock()
 
 #Loads car image
@@ -47,7 +49,7 @@ def matu():
 
 def kali():
     aani = random.randrange(0, 3)
-    print(aani)
+    #print(aani)
     if aani == 0:
         winsound.PlaySound('joonaskali.wav', winsound.SND_FILENAME)
     elif aani == 1:
@@ -57,8 +59,55 @@ def kali():
     else:
         print('lol')
 
+def button(msg, x, y, w, h, ib, ab, action=None):
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
+    #print(click)
+    if x+w > mouse[0] > x and y+h > mouse[1] > y:
+        pygame.draw.rect(gameDisplay, ab, (x, y, w, h))
+        if click[0] == 1 and action != None:
+            if action == "start":
+                game_loop()
+            elif action == "lol":
+                print("lol")
 
 
+
+
+
+    else:
+        pygame.draw.rect(gameDisplay, ib, (x, y, w, h))
+
+    smallText = pygame.font.Font('freesansbold.ttf', 28)
+    TextSurf, TextRect = text_objects("Start!", smallText)
+    TextRect.center = ((x+(w/2)), (y+(h/2)))
+    gameDisplay.blit(TextSurf, TextRect)
+
+
+
+def game_intro():
+    intro = True
+    while intro:
+        for event in pygame.event.get():
+            #print(event)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+        gameDisplay.fill(white)
+        largeText = pygame.font.Font('freesansbold.ttf', 38)
+        TextSurf, TextRect = text_objects("Get nobs or die tryin B 0.1", largeText)
+        TextRect.center = ((display_width/2), (display_height/2))
+        gameDisplay.blit(TextSurf, TextRect)
+
+
+
+        button("Start!", 150, 450, 100, 50, green, bright_green, "start")
+        #pygame.draw.rect(gameDisplay, bright_green, (150, 450, 100, 50))
+
+
+        pygame.display.update()
+        clock.tick(15)
 
 def nobs_gained(counter):
     font = pygame.font.SysFont(None, 25)
@@ -231,7 +280,7 @@ def game_loop():
         pygame.display.update()                                                     #updates screen
         clock.tick(60)                                                              #frames per second
 
-
+game_intro()
 game_loop()
 pygame.quit()                                                                   #quits pygame
 quit()
