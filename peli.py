@@ -31,7 +31,7 @@ pygame.display.set_caption('Get nobs or die tryin Beta 0.1')                    
 clock = pygame.time.Clock()
 
 #Loads car image
-opiskelijaImg = pygame.image.load('maiju.png')
+opiskelijaImg = pygame.image.load('lobo.png')
 beerImg = pygame.image.load('beer.png')
 diceImg = pygame.image.load('dice.png')
 kelaImg = pygame.image.load('kela.png')
