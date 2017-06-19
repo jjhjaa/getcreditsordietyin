@@ -78,7 +78,7 @@ def button(msg, x, y, w, h, ib, ab, action=None):
     else:
         pygame.draw.rect(gameDisplay, ib, (x, y, w, h))
 
-    smallText = pygame.font.Font('freesansbold.ttf', 28)
+    smallText = pygame.font.SysFont("comicsansms", 28)
     TextSurf, TextRect = text_objects("Start!", smallText)
     TextRect.center = ((x+(w/2)), (y+(h/2)))
     gameDisplay.blit(TextSurf, TextRect)
@@ -95,7 +95,7 @@ def game_intro():
                 quit()
 
         gameDisplay.fill(white)
-        largeText = pygame.font.Font('freesansbold.ttf', 38)
+        largeText = pygame.font.SysFont("comicsansms", 38)
         TextSurf, TextRect = text_objects("Get nobs or die tryin B 0.1", largeText)
         TextRect.center = ((display_width/2), (display_height/2))
         gameDisplay.blit(TextSurf, TextRect)
@@ -145,7 +145,7 @@ def text_objects(text, font):
 
 #function for messages
 def message_display(text):
-    largeText = pygame.font.Font('freesansbold.ttf', 28)
+    largeText = pygame.font.SysFont("comicsansms", 28)
     TextSurf, TextRect = text_objects(text, largeText)
     TextRect.center = ((display_width/2), (display_height/2))
     gameDisplay.blit(TextSurf, TextRect)
